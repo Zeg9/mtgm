@@ -1,0 +1,20 @@
+* make it generate the map (by taking screenshots)
+* remove all "useless" functionnality
+   -> Make the "client" directly read the database, and remove support for server
+   -> Remove entities (who cares about entities in a static map)
+   -> Remove all UI (except, maybe, a world/file selection dialog)
+* get all chunks before taking screenshot
+* fix aspect ratio (current values are quite random, maybe find out the exact ones)
+
+Reminder:
+
+[map chunk position]
+(player position)
+
+
+  [0,1]          [1,1]
+(-20,25,20)   (-10,25,30)
+
+
+  [0,0]          [1,0]
+(0,25,0)      (10,25,10)
