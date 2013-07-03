@@ -1,5 +1,10 @@
-Already done:
-* Generate the map "by hand": press arrow keys, and screenshot.
+How to use:
+1) Copy your world and mods
+2) Put your minetest.conf
+3) Start the mapper and double-click your world.
+4) Press arrow keys to select the tiles, and press F12 for each.
+5) You can close the mapper at any moment.
+6) Open html/map.html in your favorite browser (requires javascript and images :P)
 
 To do:
 * Generate the map automatically

@@ -1912,7 +1912,7 @@ void the_game(
 			irr::video::IImage* const image = driver->createScreenShot(); 
 			if (image) { 
 				irr::c8 filename[256]; 
-				snprintf(filename, 256, "%s" DIR_DELIM "map/5_%d_%d.png", 
+				snprintf(filename, 256, "%s" DIR_DELIM "map/%d_%d.png", 
 						 g_settings->get("screenshot_path").c_str(),
 						 mapper_x, mapper_y); 
 				if (driver->writeImageToFile(image, filename)) {
