@@ -2861,7 +2861,7 @@ void Client::afterContentReceived(IrrlichtDevice *device, gui::IGUIFont* font)
 	m_nodedef->updateTextures(m_tsrc);
 
 	// Preload item textures and meshes if configured to
-	if(g_settings->getBool("preload_item_visuals"))
+	/*if(g_settings->getBool("preload_item_visuals"))
 	{
 		verbosestream<<"Updating item textures and meshes"<<std::endl;
 		wchar_t* text = wgettext("Item textures...");
@@ -2881,7 +2881,7 @@ void Client::afterContentReceived(IrrlichtDevice *device, gui::IGUIFont* font)
 				draw_load_screen(text,device,font,0,percent);
 		}
 		delete[] text;
-	}
+	}*/
 
 	// Start mesh update thread after setting up content definitions
 	infostream<<"- Starting mesh update thread"<<std::endl;
