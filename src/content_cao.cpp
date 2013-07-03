@@ -853,9 +853,8 @@ public:
 			return;
 		
 		m_visuals_expired = false;
-
-		if(!m_prop.is_visible || m_is_local_player)
-			return;
+		// Mapper should not render entities
+		return;
 	
 		//video::IVideoDriver* driver = smgr->getVideoDriver();
 

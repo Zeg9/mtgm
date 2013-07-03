@@ -62,4 +62,4 @@ locale/
 *.cbp
 *.layout
 *.o
-
+map/*.png

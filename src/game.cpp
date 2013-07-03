@@ -74,6 +74,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 	Text input system
 */
 
+void mapper_update_pos(Player* player, int mapper_x, int mapper_y)
+{
+	player->setPosition(v3f(
+		mapper_x*100+mapper_y*200,
+		250,
+		mapper_x*100+mapper_y*(-200)
+	));
+}
+
 struct TextDestChat : public TextDest
 {
 	TextDestChat(Client *client)
@@ -1441,9 +1450,9 @@ void the_game(
 	bool respawn_menu_active = false;
 	bool update_wielded_item_trigger = false;
 
-	bool show_hud = true;
-	bool show_chat = true;
-	bool force_fog_off = false;
+	bool show_hud = false;
+	bool show_chat = false;
+	bool force_fog_off = true;
 	f32 fog_range = 100*BS;
 	bool disable_camera_update = false;
 	bool show_debug = g_settings->getBool("show_debug");
@@ -1486,6 +1495,10 @@ void the_game(
 	*/
 	Hud hud(driver, guienv, font, text_height,
 			gamedef, player, &local_inventory);
+	
+	// init mapper
+	int mapper_x(0), mapper_y(0);
+	mapper_update_pos(player,mapper_x,mapper_y);
 
 	for(;;)
 	{
@@ -1874,25 +1887,45 @@ void the_game(
 					statustext += L" (note: no 'noclip' privilege)";
 			}
 		}
+		else if(input->wasKeyDown(getKeySetting("keymap_forward")))
+		{
+			mapper_y -= 1;
+			mapper_update_pos(player,mapper_x,mapper_y);
+		}
+		else if(input->wasKeyDown(getKeySetting("keymap_backward")))
+		{
+			mapper_y += 1;
+			mapper_update_pos(player,mapper_x,mapper_y);
+		}
+		else if(input->wasKeyDown(getKeySetting("keymap_left")))
+		{
+			mapper_x -= 1;
+			mapper_update_pos(player,mapper_x,mapper_y);
+		}
+		else if(input->wasKeyDown(getKeySetting("keymap_right")))
+		{
+			mapper_x += 1;
+			mapper_update_pos(player,mapper_x,mapper_y);
+		}
 		else if(input->wasKeyDown(getKeySetting("keymap_screenshot")))
 		{
 			irr::video::IImage* const image = driver->createScreenShot(); 
 			if (image) { 
 				irr::c8 filename[256]; 
-				snprintf(filename, 256, "%s" DIR_DELIM "screenshot_%u.png", 
+				snprintf(filename, 256, "%s" DIR_DELIM "map/5_%d_%d.png", 
 						 g_settings->get("screenshot_path").c_str(),
-						 device->getTimer()->getRealTime()); 
+						 mapper_x, mapper_y); 
 				if (driver->writeImageToFile(image, filename)) {
-					std::wstringstream sstr;
+					/*std::wstringstream sstr;
 					sstr<<"Saved screenshot to '"<<filename<<"'";
 					infostream<<"Saved screenshot to '"<<filename<<"'"<<std::endl;
 					statustext = sstr.str();
-					statustext_time = 0;
+					statustext_time = 0;*/ // mapper: disabled this so it doesn't show on the map
 				} else{
 					infostream<<"Failed to save screenshot '"<<filename<<"'"<<std::endl;
 				}
-				image->drop(); 
-			}			 
+				image->drop();
+			}
 		}
 		else if(input->wasKeyDown(getKeySetting("keymap_toggle_hud")))
 		{

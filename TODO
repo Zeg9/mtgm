@@ -1,8 +1,12 @@
-* make it generate the map (by taking screenshots)
+Already done:
+* Generate the map "by hand": press arrow keys, and screenshot.
+
+To do:
+* Generate the map automatically
 * remove all "useless" functionnality
-   -> Make the "client" directly read the database, and remove support for server
-   -> Remove entities (who cares about entities in a static map)
-   -> Remove all UI (except, maybe, a world/file selection dialog)
+   -> Make the "client" directly read the database, and remove server and socket.*
+   -> Entities: they currently won't render, but need to disable them completely
+   -> Remove HUD
 * get all chunks before taking screenshot
 * fix aspect ratio (current values are quite random, maybe find out the exact ones)
 
@@ -12,7 +16,7 @@ Reminder:
 (player position)
 
 
-  [0,1]          [1,1]
+  [0,-1]          [1,-1]
 (-20,25,20)   (-10,25,30)
 
 

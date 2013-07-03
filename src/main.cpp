@@ -1677,9 +1677,7 @@ int main(int argc, char *argv[])
 	while(device->run() && kill == false)
 	{
 		// Set the window caption
-		wchar_t* text = wgettext("Main Menu");
-		device->setWindowCaption((std::wstring(L"Minetest [")+text+L"]").c_str());
-		delete[] text;
+		device->setWindowCaption(std::wstring(L"MTGM").c_str());
 
 		// This is used for catching disconnects
 		try

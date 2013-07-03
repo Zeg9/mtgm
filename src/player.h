@@ -152,7 +152,7 @@ public:
 
 	f32 getPitch()
 	{
-		return 0;//m_pitch;
+		return 45;//m_pitch
 	}
 
 	f32 getYaw()
